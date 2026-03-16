@@ -936,7 +936,14 @@ body:JSON.stringify({name,email,password,role})
 
 alert("Signup successful");
 
+}setTimeout(() => {
+    toast.classList.add('opacity-0', 'translate-x-full');
+    setTimeout(() => {
+        toast.remove();
+    }, 300);
+}, 3000);
 }
+</script>
     </script>
     
 </body>
