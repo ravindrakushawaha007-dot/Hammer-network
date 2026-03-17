@@ -919,6 +919,36 @@
         window.addEventListener('DOMContentLoaded', () => {
             navigate('home');
         });
-    </script>
+    <form id="signupForm">
+  <input name="name" placeholder="Name" required />
+  <input name="email" type="email" required />
+  <input name="password" type="password" required />
+
+  <select name="role">
+    <option value="worker">Worker</option>
+    <option value="contractor">Contractor</option>
+    <option value="company">Company</option>
+  </select>
+
+  <button type="submit">Signup</button>
+</form>
+
+<script>
+document.getElementById("signupForm").onsubmit = async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+
+  const res = await fetch("/api/signup", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  alert(result.message);
+};
+</script>
 </body>
 </html>
